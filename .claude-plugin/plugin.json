@@ -1,12 +1,10 @@
 {
-  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "gringolito-skils",
   "description": "AI skills for common tasks",
   "author": {
     "name": "Filipe Utzig",
     "email": "filipe@gringolito.com"
   },
-  "homepage": "https://github.com/gringolito/skills",
   "repository": "https://github.com/gringolito/skills",
   "license": "MIT"
 }
