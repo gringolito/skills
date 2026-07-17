@@ -21,6 +21,7 @@ This will install all skills and make them available to your AI agent.
 | [address-pr-reviews](./skills/address-pr-reviews/) | Address review comments on pull requests |
 | [execute-next-item](./skills/execute-next-item/) | Select the next backlog item, discuss the implementation plan, and hand off to another agent |
 | [handoff](./skills/handoff/) | Compact the current conversation into a handoff document for another agent to pick up (forked from [mattpocock/skills](https://github.com/mattpocock/skills) so the model can invoke it correctly) |
+| [open-pr](./skills/open-pr/) | Inspect the current changes, create a branch, commit the work, and open a pull request |
 
 ## License
 
