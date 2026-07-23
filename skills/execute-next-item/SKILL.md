@@ -11,4 +11,4 @@ Present the implementation plan for my review and then pause. Do not continue un
 
 Once the plan is approved, run /handoff to produce a complete implementation handoff based on the approved plan.
 
-Finally, create a new implementation sub-agent. Pass it the generated handoff document together with an explicit instruction that it must not create or use Git worktrees under any circumstances.
+Finally, create a new implementation sub-agent running claude-sonnet-4-6 model. Pass it the generated handoff document together with an explicit instruction that it must not create or use Git worktrees under any circumstances.
