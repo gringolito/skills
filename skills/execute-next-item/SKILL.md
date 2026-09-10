@@ -5,10 +5,15 @@ description: Select the next backlog item, refine the implementation approach wi
 
 Run /github-backlog-management:pick-item to select the next backlog item.
 
-After the item has been selected, conduct a /grilling session using the /domain-modeling skill. Use the session to uncover implementation details, challenge assumptions, identify edge cases, and resolve any knowledge gaps before proposing an implementation plan. Continue the discussion until you're confident there are no significant unknowns remaining.
+After the item has been selected, run /grilling using the /domain-modeling skill. Use the session to surface implementation details, challenge assumptions, and find edge cases before proposing a plan. Keep going until no significant unknowns remain.
 
 Present the implementation plan for my review and then pause. Do not continue until I explicitly approve the plan.
 
-Once the plan is approved, run /handoff to produce a complete implementation handoff based on the approved plan.
+Once the plan is approved, delegate the implementation to a new sub-agent. Give it:
 
-Finally, create a new implementation sub-agent running claude-sonnet-4-6 model. Pass it the generated handoff document together with an explicit instruction that it must not create or use Git worktrees under any circumstances.
+- The selected item's identifier and a link to its issue.
+- The approved implementation plan.
+- A "suggested skills" section listing which skills the sub-agent should invoke during implementation, and why.
+- Links or paths to relevant PRDs, plans, ADRs, issues, commits, and diffs instead of restating their content.
+
+Before handing off, redact any sensitive information such as API keys, passwords, or personally identifiable information.
