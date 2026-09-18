@@ -6,7 +6,7 @@ argument-hint: "Optional: the issue number to dispatch, or leave this blank to a
 
 Take a single ready-for-agent issue from open to a reviewed pull request without pausing for user sign-off.
 
-When no issue number is provided, select the highest-ranked eligible issue that is open, labeled `ready-for-agent`, and unassigned. Do not select an issue with an open `blocked_by` dependency. If an issue number is provided, use that issue instead, but stop and report why if it is assigned, blocked, or otherwise ineligible. If no eligible issue can be found, stop and report that.
+When no issue number is provided, select the highest-ranked eligible issue that is open, labeled `ready-for-agent`, and unassigned. Do not select an issue with an open `blocked_by` dependency. If an issue number is provided, inspect it. If it has sub-issues, use the sub-issue list as picking candidates and select the topmost unblocked sub-issue that is open, labeled `ready-for-agent`, and unassigned. Otherwise, use that issue, and stop and report why if it is assigned, blocked, or otherwise ineligible. If no eligible issue can be found, stop and report that.
 
 Self-assign the issue.
 
