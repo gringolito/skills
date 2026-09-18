@@ -10,7 +10,7 @@ When no issue number is provided, select the highest-ranked eligible issue that 
 
 Self-assign the issue.
 
-Read the issue and, if it has a parent, read enough of the parent to understand the context the issue depends on.
+Read the issue, including all comments, and, if it has a parent, read enough of the parent and its comments to understand the context the issue depends on.
 
 Delegate implementation to a new sub-agent, passing it the issue, relevant parent context, and the `tdd` skill. Have the sub-agent follow TDD, keep the changes scoped to the issue, and always run the tests, linters, and code formatting tools locally before considering the implementation complete. Have it return once the implementation and local verification are complete.
 
