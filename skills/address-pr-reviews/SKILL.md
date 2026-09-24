@@ -8,8 +8,6 @@ Read all review comments and review threads on the pull request. Ensure every co
 
 If any feedback is ambiguous or reveals knowledge gaps, conduct a /grilling session using the /domain-modeling skill to clarify the intent before making changes.
 
-Delegate the implementation work to any appropriate skill when available.
-
-Once all changes have been completed, verify that every review comment has been addressed.
+Run the implementation and once all changes have been completed, verify that every review comment has been addressed.
 
 Finally, reply to each review comment with a brief summary of how it was addressed.
