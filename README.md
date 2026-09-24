@@ -22,8 +22,6 @@ This will install all skills and make them available to your AI agent.
 | [ai-attribution](./skills/ai-attribution/) | Mark issues, pull requests, comments, reviews, and commits written on the user's behalf with a footnote naming the AI model that wrote them |
 | [dispatch-issue](./skills/dispatch-issue/) | Autonomously take a ready-for-agent issue from the queue to a reviewed PR |
 | [execute-next-item](./skills/execute-next-item/) | Select the next backlog item, discuss the implementation plan, and hand off to another agent |
-| [handoff](./skills/handoff/) | Compact the current conversation into a handoff document for another agent to pick up (forked from [mattpocock/skills](https://github.com/mattpocock/skills) so the model can invoke it correctly) |
-| [open-pr](./skills/open-pr/) | Inspect the current changes, create a branch, commit the work, and open a pull request |
 
 ## License
 

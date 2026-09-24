@@ -7,8 +7,7 @@
         "address-pr-reviews",
         "ai-attribution",
         "dispatch-issue",
-        "execute-next-item",
-        "open-pr"
+        "execute-next-item"
       ]
     }
   ]
