@@ -20,8 +20,9 @@ This will install all skills and make them available to your AI agent.
 | --- | --- |
 | [address-pr-reviews](./skills/address-pr-reviews/) | Address review comments on pull requests |
 | [ai-attribution](./skills/ai-attribution/) | Mark issues, pull requests, comments, reviews, and commits written on the user's behalf with a footnote naming the AI model that wrote them |
-| [dispatch-issue](./skills/dispatch-issue/) | Autonomously take a ready-for-agent issue from the queue to a reviewed PR |
 | [execute-next-item](./skills/execute-next-item/) | Select the next backlog item, discuss the implementation plan, and hand off to another agent |
+| [implement-issue](./skills/implement-issue/) | Take a single issue through implementation, PR, CI, and code review until the PR is merged |
+| [implement-spec](./skills/implement-spec/) | Implement every sub-issue of a specification by running `implement-issue` on each in dependency order |
 
 ## License
 

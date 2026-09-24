@@ -6,8 +6,9 @@
       "skills": [
         "address-pr-reviews",
         "ai-attribution",
-        "dispatch-issue",
-        "execute-next-item"
+        "execute-next-item",
+        "implement-issue",
+        "implement-spec"
       ]
     }
   ]
