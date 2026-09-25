@@ -28,18 +28,18 @@ requires, and runs the tests, linters, and formatters locally before it reports 
 done.
 
 When the implementation is done, open a pull request that is clear, concise, and easy to
-review, and that includes `Closes #<N>`.
+review, and that includes `Closes: #<N>` trailer.
 
 Then see the pull request through until it is merged. After every push, check CI and fix any
 failures your changes caused. If three consecutive pushes don't turn CI green, stop and report
 it as a blocker. Leave pre-existing and environmental failures alone, and never make CI pass
 by weakening or deleting a test.
 
-Once CI is green, have a new reviewer sub-agent run the `code-review` skill on the pull
-request and post its findings there, as inline comments on the relevant lines of the diff
-wherever a finding points to specific code. Address every review comment and reply to each one
-with the fix, the solution, or the decision you made. Then run the relevant tests, linters,
-and formatters locally, push the fixes, and get CI green again.
+Once CI is green, use the `reviewer` agent and have it run the `code-review` skill on the pull
+request and post its findings there, as inline comments on the relevant lines of the diff wherever
+a finding points to specific code. Address every review comment and reply to each one with the
+fix, the solution, or the decision you made. Then run the relevant tests, linters, and formatters
+locally, push the fixes, and get CI green again.
 
 Keep watching the pull request for new comments and further review rounds, and repeat the
 same cycle for each one, until the pull request is merged.
