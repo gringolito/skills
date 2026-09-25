@@ -1,12 +1,12 @@
 ---
 name: ai-attribution
 description: >-
-  Add an AI attribution footnote to everything published on the user's behalf. Use whenever you
+  Add AI attribution to everything published on the user's behalf. Use whenever you
   create an issue or pull request, comment on or reply to an issue, post a pull request review or
   inline review comment, reply to a review thread, or write a commit message.
 ---
 
-Add an AI attribution footnote to everything you publish on the user's behalf. This includes issues,
+Add AI attribution to everything you publish on the user's behalf. This includes issues,
 pull requests, comments, replies, reviews, inline review comments, and commit messages, whether you
 write them directly or through another skill. Never publish without the attribution.
 
@@ -24,11 +24,12 @@ End issues, pull requests, comments, and reviews with:
 For pull request reviews, add the attribution to both the review body and every inline review
 comment, since GitHub displays each inline comment in its own thread.
 
-End commit messages with the plain-text version as its own paragraph, placed before footers such as
-`Refs #<N>` and `Signed-off-by`:
+Attribute commits with a `Co-authored-by` trailer instead of a footnote. Name the model and use its
+vendor's no-reply address, such as `noreply@anthropic.com` for Claude models. Place it with the other
+trailers, such as `Closes:` and `Signed-off-by`, at the end of the commit message:
 
 ```text
-This commit was added on behalf of <name> by AI (<model>).
+Co-authored-by: <model> <noreply-address>
 ```
 
-When editing a post or amending a commit, keep a single footnote naming the current model.
+When editing a post or amending a commit, keep a single attribution naming the current model.
