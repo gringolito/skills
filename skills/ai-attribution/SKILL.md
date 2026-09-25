@@ -14,6 +14,10 @@ Get the user's name from the git configuration. Take the model from your system 
 configuration, using its exact name and version, such as `Claude Sonnet 4.5`. Do not guess either
 one. If you cannot determine them, ask the user before publishing.
 
+When you delegate publishing to a sub-agent, do not pass your own model name in its instructions.
+The sub-agent may run on a different model, so tell it to determine its own model the same way and
+attribute the work to that model.
+
 End issues, pull requests, comments, and reviews with:
 
 ```markdown
