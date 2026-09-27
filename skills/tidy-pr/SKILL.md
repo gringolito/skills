@@ -2,8 +2,8 @@
 name: tidy-pr
 description: >-
   Tidy the current work into a clean, reviewable pull request that shows its intent, key files,
-  and risks, without changing behavior. Use when the user wants to clean up, organize, or prepare
-  a PR for review.
+  and risks, without changing behavior. Use when the user wants to clean up or organize an
+  existing pull request, or open a new one from the work already on the branch.
 ---
 
 Turn the current work into a pull request a reviewer can follow on its own. They should see what
