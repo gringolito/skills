@@ -27,8 +27,8 @@ parent issue, and the `tdd` skill. The sub-agent must follows TDD, changes only 
 requires, and runs the tests, linters, and formatters locally before it reports the work as
 done.
 
-When the implementation is done, run the `craft-pr` skill to open the pull request, and add a
-`Closes: #<N>` trailer.
+When the implementation is done, open a pull request that is clear, concise, and easy to
+review, and that includes `Closes: #<N>` trailer.
 
 Then see the pull request through until it is merged. After every push, check CI and fix any
 failures your changes caused. If three consecutive pushes don't turn CI green, stop and report
