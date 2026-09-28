@@ -27,7 +27,7 @@ parent issue, and the `tdd` skill. The sub-agent must follows TDD, changes only 
 requires, and runs the tests, linters, and formatters locally before it reports the work as
 done.
 
-When the implementation is done, run the `tidy-pr` skill to open the pull request, and add a
+When the implementation is done, run the `craft-pr` skill to open the pull request, and add a
 `Closes: #<N>` trailer.
 
 Then see the pull request through until it is merged. After every push, check CI and fix any

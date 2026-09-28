@@ -1,7 +1,7 @@
 ---
-name: tidy-pr
+name: craft-pr
 description: >-
-  Open a pull request a reviewer can follow on its own, or tidy an open one, without changing
+  Craft a pull request a reviewer can follow on its own, or rework an open one, without changing
   behavior. Use whenever you are about to open a pull request from the current branch, or when the
   user wants to clean up or reorganize an existing pull request.
 ---
