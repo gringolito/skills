@@ -7,10 +7,10 @@
         "address-pr-reviews",
         "ai-attribution",
         "code-review",
+        "craft-pr",
         "execute-next-item",
         "implement-issue",
-        "implement-spec",
-        "tidy-pr"
+        "implement-spec"
       ]
     }
   ]
