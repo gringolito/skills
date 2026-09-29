@@ -10,7 +10,8 @@
         "craft-pr",
         "execute-next-item",
         "implement-issue",
-        "implement-spec"
+        "implement-spec",
+        "scope-completeness-review"
       ]
     }
   ]
