@@ -20,12 +20,13 @@ assigned, or blocked. If no eligible issue can be found, stop and report that.
 Self-assign the issue.
 
 Read the issue and all its comments. If it has a parent, read enough of the parent and its
-comments to understand the context the issue depends on.
+comments to understand the context the issue depends on. Plan the implementation. For code changes
+identify the seams under test; seams gather from the issue and its acceptance criteria count as
+confirmed.
 
-Run the implementation through a sub-agent. Give it the issue, the relevant parts of the
-parent issue, and the `tdd` skill. The sub-agent must follows TDD, changes only what the issue
-requires, and runs the tests, linters, and formatters locally before it reports the work as
-done.
+Change only what the issue requires. All agents writing code use the `tdd` skill. Run the tests,
+linters, and formatters locally before reporting the work as done. You can use sub-agents when
+useful. If you do, give them the issue, the relevant parent context, your plan, and these rules.
 
 When the implementation is done, open a pull request that is clear, concise, and easy to
 review, and that includes `Closes: #<N>` trailer.
