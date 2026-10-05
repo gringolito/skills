@@ -20,12 +20,13 @@ Run `implement-issue` on every sub-issue that is currently unblocked, passing it
 number. Unblocked sub-issues can run in parallel, each in its own sub-agent with its own full
 lifecycle.
 
-When the user merges a pull request, re-check the sub-issues and run `implement-issue` on any
-that are now unblocked. Keep going until every applicable sub-issue's pull request is merged.
+Keep watching the open pull requests. When the user merges one, re-check the sub-issues and run
+`implement-issue` on any that are now unblocked. Keep going until every applicable sub-issue's
+pull request is merged.
 
 When `implement-issue` reports a blocker on a sub-issue, stop and report it rather than skip
 the sub-issue.
 
-When every sub-issue's pull request is merged, check the specification issue's state. Report
-each completed sub-issue with its pull request and current status, along with any remaining
-work or unresolved issues.
+When every sub-issue's pull request is merged, run the `scope-completeness-review` skill on the
+specification issue. Report each completed sub-issue with its pull request and status, the
+review's outcome, and any gaps or proposed follow-up issues without acting on them.
