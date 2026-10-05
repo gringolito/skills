@@ -13,13 +13,15 @@ Review the pull request on two axes:
 
 Run each axis in its own `reviewer` agent, in parallel, so neither pollutes the other's context.
 Each reviewer should keep its report under 200 words and tie every finding to the relevant file
-and line when possible.
+and line when possible. It opens the report with its exact model ID, copied from its system prompt
+or runtime configuration. If neither names a model, it says so rather than guessing.
 
 Aggregate both reviewer findings and post one review on the pull request. Put each finding tied
 to a line in an inline comment on that line. In the review body, summarize the findings under
 `## Standards` and `## Spec`, and give in full the ones with no line to comment on. Don't merge or
-rerank findings across the axes, so one never masks the other. End the body with the finding count
-for each axis and its worst finding, when any exist.
+rerank findings across the axes, so one never masks the other. Under each heading, name the model
+that reviewed that axis. End the body with the finding count for each axis and its worst finding,
+when any exist.
 
 ## Spec
 
