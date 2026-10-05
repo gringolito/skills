@@ -21,7 +21,7 @@ Self-assign the issue.
 
 Read the issue and all its comments. If it has a parent, read enough of the parent and its
 comments to understand the context the issue depends on. Plan the implementation. For code changes
-identify the seams under test; seams gather from the issue and its acceptance criteria count as
+identify the seams under test; seams gathered from the issue and its acceptance criteria count as
 confirmed.
 
 Change only what the issue requires. All agents writing code use the `tdd` skill. Run the tests,
