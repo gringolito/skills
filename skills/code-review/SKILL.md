@@ -20,8 +20,9 @@ Aggregate both reviewer findings and post one review on the pull request. Put ea
 to a line in an inline comment on that line. In the review body, summarize the findings under
 `## Standards` and `## Spec`, and give in full the ones with no line to comment on. Don't merge or
 rerank findings across the axes, so one never masks the other. Under each heading, name the model
-that reviewed that axis. End the body with the finding count for each axis and its worst finding,
-when any exist.
+that reviewed that axis by its human-readable name, such as `GPT-6.1-Sol` rather than
+`openai-codex/gpt-6.1-sol:high`. End the body with the finding count for each axis and its worst
+finding, when any exist.
 
 ## Spec
 

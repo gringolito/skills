@@ -11,8 +11,13 @@ pull requests, comments, replies, reviews, inline review comments, and commit me
 write them directly or through another skill. Never publish without the attribution.
 
 Get the user's name from the git configuration. Take the model from your system prompt or runtime
-configuration, using its exact name and version, such as `Claude Sonnet 4.5` or `GPT-6 Luna`. Do
-not guess either one. If you cannot determine them, ask the user before publishing.
+configuration. Do not guess either one. If you cannot determine them, ask the user before
+publishing.
+
+Write the model's human-readable name, not its ID. Runtimes and sub-agents often report a slug
+such as `openai-codex/gpt-6.1-sol:high` or `openrouter/glm-5.3-flash:auto`. Drop the provider
+prefix and the thinking-level or routing suffix, then write what remains the way its vendor does,
+such as `GPT-6.1-Sol`, `GLM-5.3-Flash`, or `Claude Sonnet 4.5`.
 
 When you delegate publishing to a sub-agent, do not pass your own model name in its instructions.
 The sub-agent may run on a different model, so tell it to determine its own model the same way and
