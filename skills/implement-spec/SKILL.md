@@ -13,12 +13,18 @@ work, handled by the `implement-issue` skill. That skill defines how a single is
 implemented, reviewed, and merged. This one decides which sub-issues run and when.
 
 Start by reading the specification issue and all its comments, then every sub-issue and its
-comments. Use the `blocked_by` relationships to work out the dependencies. Follow only the
-ordering those dependencies require, and don't add your own.
+comments. Use the `blocked_by` relationships to work out the dependencies. Follow the ordering
+those dependencies require, and add no other except the exemplar below.
+
+When several sub-issues make the same kind of change, such as rewrites that share a style or a
+contract, run one of them first as the exemplar and hold the rest until the user has reviewed it.
+The user's review of the first one sets rules every later one needs, and running them all at once
+means each repeats the same mistakes. Unrelated sub-issues still run alongside it.
 
 Run `implement-issue` on every sub-issue that is currently unblocked, passing it the sub-issue
 number. Unblocked sub-issues can run in parallel, each in its own sub-agent with its own full
-lifecycle.
+lifecycle. Give each sub-agent the rules the user's reviews have set so far, and pass a new one to
+every sub-agent still working as soon as the user states it.
 
 Keep watching the open pull requests. When the user merges one, re-check the sub-issues and run
 `implement-issue` on any that are now unblocked. Keep going until every applicable sub-issue's
