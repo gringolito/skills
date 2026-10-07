@@ -26,6 +26,7 @@ This will install all skills and make them available to your AI agent.
 | [implement-issue](./skills/implement-issue/) | Take a single issue through implementation, PR, CI, and code review until the PR is merged |
 | [implement-spec](./skills/implement-spec/) | Implement every sub-issue of a specification by running `implement-issue` on each in dependency order |
 | [scope-completeness-review](./skills/scope-completeness-review/) | Check that a parent or spec issue's scope is fully built in the code, and close the issue once it is |
+| [writing-skills](./skills/writing-skills/) | Write or edit skills and other instructions meant for agents to follow |
 
 ## License
 
