@@ -17,7 +17,7 @@ provided and the issue has sub-issues, select the topmost of those sub-issues th
 same criteria. Otherwise, use the provided issue, and stop and report why if it is closed,
 assigned, or blocked. If no eligible issue can be found, stop and report that.
 
-Self-assign the issue.
+Self-assign the issue before starting, so no one else picks it up.
 
 Read the issue and all its comments. If it has a parent, read enough of the parent and its
 comments to understand the context the issue depends on. Plan the implementation. For code changes
@@ -36,9 +36,9 @@ failures your changes caused. If three consecutive pushes don't turn CI green, s
 it as a blocker. Leave pre-existing and environmental failures alone, and never make CI pass
 by weakening or deleting a test.
 
-Once CI is green, run the `code-review` skill on the pull request. Address every review comment
-and reply to each one with the fix, the solution, or the decision you made. Then run the relevant
-tests, linters, and formatters locally, push the fixes, and get CI green again.
+Once CI is green, run the `code-review` skill on the pull request. Then address its review, and
+every later review or comment, with the `address-pr-reviews` skill. Run the relevant tests,
+linters, and formatters locally before each push, and get CI green again.
 
 Keep watching the pull request for new comments and further review rounds, and repeat the
 same cycle for each one, until the pull request is merged.
