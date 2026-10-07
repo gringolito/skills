@@ -32,6 +32,12 @@ surrounding code, such as who calls it, what data passes through it, and what it
 relevant. Point to the code that needs the closest look and the files that are safe to skim. Size
 the guide to the change. A small pull request may need only a line or two.
 
+Keep the visible description short enough to read in one screen. When the full description would
+run longer, keep the summary and the reason for the change visible, and move the longer sections,
+such as the review guide or file breakdown, into collapsible `<details>` blocks, each with a
+`<summary>` line saying what it holds. Leave a blank line after `<summary>` so GitHub renders the
+Markdown inside. Keep the attribution footnote outside any collapsed block.
+
 Never present a behavior change as cleanup. If the pull request is too big, or mixes unrelated
 concerns so badly that tidying cannot make it reviewable, recommend splitting it instead of
 polishing around the problem.
