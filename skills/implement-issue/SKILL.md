@@ -17,7 +17,7 @@ provided and the issue has sub-issues, select the topmost of those sub-issues th
 same criteria. Otherwise, use the provided issue, and stop and report why if it is closed,
 assigned, or blocked. If no eligible issue can be found, stop and report that.
 
-Assign the issue to yourself before starting, so no one else picks it up.
+Self-assign the issue before starting, so no one else picks it up.
 
 Read the issue and all its comments. If it has a parent, read enough of the parent and its
 comments to understand the context the issue depends on. Plan the implementation. For code changes

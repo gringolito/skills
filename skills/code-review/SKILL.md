@@ -16,8 +16,8 @@ Each reviewer should keep its report under 200 words and tie every finding to th
 and line when possible. It opens the report with its exact model ID, copied from its system prompt
 or runtime configuration. If neither names a model, it says so rather than guessing.
 
-Aggregate both reviewer findings and post them as one pull request review, not as separate
-comments, so each finding gets a thread the author can answer. Put each finding tied to a line in
+Aggregate both reviewer findings and post them as one pull request review, so each finding gets a
+thread the author can answer. Put each finding tied to a line in
 an inline comment on that line. In the review body, summarize the findings under
 `## Standards` and `## Spec`, and give in full the ones with no line to comment on. Don't merge or
 rerank findings across the axes, so one never masks the other. Under each heading, name the model
