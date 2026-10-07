@@ -24,6 +24,12 @@ that reviewed that axis by its human-readable name, such as `GPT-6.1-Sol` rather
 `openai-codex/gpt-6.1-sol:high`. End the body with the finding count for each axis and its worst
 finding, when any exist.
 
+Keep the review body short enough to read in one screen. When the full findings would run longer,
+keep each axis's summary and model and the closing counts visible, and move the detail into a
+collapsible `<details>` block under its heading, with a `<summary>` line saying what it holds.
+Leave a blank line after `<summary>` so GitHub renders the Markdown inside. Keep the attribution
+footnote outside any collapsed block.
+
 ## Spec
 
 Review the pull request against the issue it closes. If there isn't one, use the pull request
