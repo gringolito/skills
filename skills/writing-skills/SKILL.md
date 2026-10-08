@@ -12,10 +12,9 @@ Open with the goal and what done looks like in terms someone could verify. Then 
 the agent needs, one concern per short paragraph, with its reason when it isn't obvious. Say each
 thing once.
 
-Describe requirements in terms of observable outcomes and evidence rather than prescribing the
-mechanics used to reach them. Tell the agent what must be true when it finishes and what must be
-verified. Prescribe a particular tool, command, sub-agent, or sequence only when using it is part
-of the requirement rather than one possible implementation.
+Prefer descriptive over prescriptive guidance. A skill says what to do, not how to do it. Describe
+the outcomes, constraints, and evidence of completion, and leave the approach to the agent.
+Specify a tool, command, sub-agent, or sequence only when it is part of the requirement itself.
 
 Cut what the agent already knows: how to find the repo, which command does a job, what a common
 term means, that it should read the issue it was given, or that an API exists. Cut what its context
