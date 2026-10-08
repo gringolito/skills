@@ -13,7 +13,7 @@ the agent needs, one concern per short paragraph, with its reason when it isn't 
 thing once.
 
 Prefer descriptive over prescriptive guidance. A skill says what to do, not how to do it. Describe
-the intended outcomes, constraints, and evidence of completion, and leave the approach to the agent.
+the outcomes, constraints, and evidence of completion, and leave the approach to the agent.
 Specify a tool, command, sub-agent, or sequence only when it is part of the requirement itself.
 
 Cut what the agent already knows: how to find the repo, which command does a job, what a common
