@@ -2,14 +2,13 @@
 name: capture-ui-evidence
 description: >-
   Show reviewers a UI change with screenshots or screen recordings attached where they read it.
-  Use whenever a change affects the UI, and you are opening a pull request for it or replying to
-  review feedback that asked for it.
+  Use when opening a pull request with UI changes or responding to review feedback that requests
+  visual evidence.
 ---
 
-Let the reviewer judge a UI change without checking out the branch. When you finish, each
-distinct visual change or changed interaction has enough evidence to judge it, and that media
-renders inline on GitHub beside the relevant description or in a linked conversation comment.
-A capture may cover several changes when each remains clear.
+Let the reviewer judge a UI change without checking out the branch. When you finish, the pull
+request or review reply shows every meaningful visual change with screenshots or recordings that
+render inline on GitHub.
 
 Capture the running application using the code under review. Mockups and design files don't
 count, because they can't show a bug you introduced. Recapture evidence after any change that
@@ -34,6 +33,5 @@ attachments cannot appear there, link to a conversation comment containing the e
 Read [GitHub attachments](github-attachments.md) when uploading evidence to a description,
 conversation comment, or review-thread reply.
 
-Check that every intended capture renders in the published description or comment before
-deleting local files. If only some attachments succeed, add the missing evidence to the
-existing post.
+Verify that every attachment uploaded successfully, renders correctly, and appears next to the
+text it supports. Delete the local captures only after verifying the published evidence.
