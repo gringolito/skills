@@ -30,7 +30,8 @@ one that holds the core idea, such as a new type, interface, or entry point. The
 read the rest. For each stop, say in a sentence what that part does and how it connects to the
 surrounding code, such as who calls it, what data passes through it, and what it replaces when
 relevant. Point to the code that needs the closest look and the files that are safe to skim. Size
-the guide to the change. A small pull request may need only a line or two.
+the guide to the change. A small pull request may need only a line or two. When the change affects
+the UI, show it with the `capture-ui-evidence` skill.
 
 Give each section a Markdown heading so reviewers can find it at a glance. Keep the visible
 description to 30 lines or fewer. When the full description would run longer than 30 lines, keep
