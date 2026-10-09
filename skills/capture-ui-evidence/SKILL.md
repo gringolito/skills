@@ -2,8 +2,8 @@
 name: capture-ui-evidence
 description: >-
   Show reviewers a UI change with screenshots or screen recordings attached where they read it.
-  Use when opening a pull request with UI changes or responding to review feedback that requests
-  visual evidence.
+  Use when opening a pull request with UI changes or responding to review feedback with a fix
+  that changes the UI.
 ---
 
 Let the reviewer judge a UI change without checking out the branch. When you finish, the pull
