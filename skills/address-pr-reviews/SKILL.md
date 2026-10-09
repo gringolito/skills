@@ -20,4 +20,5 @@ Apply a suggested change as written. Fix only obvious typos and style formats in
 the reply.
 
 Reply in each comment's own thread as soon as its fix is pushed, naming the commit and what
-changed, or the decision you made instead.
+changed, or the decision you made instead. When the fix changes the UI, show the result in the
+reply with the `capture-ui-evidence` skill.

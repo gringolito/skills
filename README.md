@@ -20,6 +20,7 @@ This will install all skills and make them available to your AI agent.
 | --- | --- |
 | [address-pr-reviews](./skills/address-pr-reviews/) | Address review comments on pull requests |
 | [ai-attribution](./skills/ai-attribution/) | Mark issues, pull requests, comments, reviews, and commits written on the user's behalf with a footnote naming the AI model that wrote them |
+| [capture-ui-evidence](./skills/capture-ui-evidence/) | Show reviewers UI changes with screenshots or recordings attached to the pull request or review reply |
 | [code-review](./skills/code-review/) | Review a pull request against the project's standards and spec, and post the findings on it |
 | [craft-pr](./skills/craft-pr/) | Craft the current work into a clean, reviewable pull request without changing its behavior |
 | [implement-issue](./skills/implement-issue/) | Take a single issue through implementation, PR, CI, and code review until the PR is merged |
