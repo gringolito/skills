@@ -1,35 +1,38 @@
 ---
 name: code-review
 description: >-
-  Review a pull request against the project's standards and its spec, and post the findings on
-  it. Use when the user asks to "review this PR" or wants a second pair of eyes on a change.
-argument-hint: "The pull request number"
+  Review a change against the project's standards and its spec. Use when an agent needs
+  independent feedback on work in progress, such as before opening a pull request, or when the
+  user wants a change reviewed locally. To post the findings on a pull request, use `review-pr`.
+argument-hint: "Optional: the change to review and the issue or spec it implements"
 ---
 
-Review the pull request on two axes:
+Review the change on two axes:
 
 - Standards: does the code follow the project's conventions and best practices?
 - Spec: does the code do what the originating issue or spec asked for?
 
-Run each axis in its own `reviewer` agent, in parallel, so neither pollutes the other's context.
-Each reviewer should keep its report under 200 words and tie every finding to the relevant file
-and line when possible. It opens the report with its exact model ID, copied from its system prompt
-or runtime configuration. If neither names a model, it says so rather than guessing.
+The change is whatever the caller names: a branch, a pull request, or the uncommitted work in
+progress. When nothing is named, review the current branch against its base.
 
-Aggregate both reviewer findings and post them as one pull request review, so each finding gets a
-thread the author can answer. Put each finding tied to a line in
-an inline comment on that line. In the review body, summarize the findings under
-`## Standards` and `## Spec`, and give in full the ones with no line to comment on. Don't merge or
-rerank findings across the axes, so one never masks the other. Under each heading, name the model
-that reviewed that axis by its human-readable name, such as `GPT-6.1-Sol` rather than
-`openai-codex/gpt-6.1-sol:high`. End the body with the finding count for each axis and its worst
-finding, when any exist.
+Run each axis in its own `reviewer` agent, in parallel, so neither pollutes the other's context and
+neither shares the author's. Each reviewer opens its report with its exact model ID, copied from
+its system prompt or runtime configuration. If neither names a model, it says so rather than
+guessing. Keep each axis summary under 200 words. Keep individual findings concise without
+omitting evidence needed to act on them.
+
+Each finding states the problem, why it matters, and a concrete remedy, with its file and line
+when applicable. Distinguish demonstrated problems from uncertain concerns.
+
+Return the findings to the caller grouped by axis, each axis with the model that reviewed it.
+Don't merge or rerank findings across the axes, so one never masks the other. Publish nothing:
+the review leaves no trace on the pull request, the issue, or the commit history.
 
 ## Spec
 
-Review the pull request against the issue it closes. If there isn't one, use the pull request
-description when it defines the expected behavior. If neither provides a useful specification,
-skip this axis and say so in the review.
+Review the change against the issue or spec it implements: the one the caller names, or the
+issue a pull request closes. Failing both, use the pull request description when it defines the
+expected behavior. If nothing provides a useful specification, skip this axis and say so.
 
 Look for requirements that are missing or only partially implemented, behavior that was not
 requested (scope creep), and requirements that appear implemented but are implemented incorrectly.
