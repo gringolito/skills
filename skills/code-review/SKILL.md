@@ -16,10 +16,13 @@ The change is whatever the caller names: a branch, a pull request, or the uncomm
 progress. When nothing is named, review the current branch against its base.
 
 Run each axis in its own `reviewer` agent, in parallel, so neither pollutes the other's context and
-neither shares the author's. Each reviewer should keep its report under 200 words and tie every
-finding to the relevant file and line when possible. It opens the report with its exact model ID,
-copied from its system prompt or runtime configuration. If neither names a model, it says so
-rather than guessing.
+neither shares the author's. Each reviewer opens its report with its exact model ID, copied from
+its system prompt or runtime configuration. If neither names a model, it says so rather than
+guessing. Keep each axis summary under 200 words. Keep individual findings concise without
+omitting evidence needed to act on them.
+
+Each finding states the problem, why it matters, and a concrete remedy, with its file and line
+when applicable. Distinguish demonstrated problems from uncertain concerns.
 
 Return the findings to the caller grouped by axis, each axis with the model that reviewed it.
 Don't merge or rerank findings across the axes, so one never masks the other. Publish nothing:

@@ -28,10 +28,12 @@ Change only what the issue requires. All agents writing code use the `tdd` skill
 linters, and formatters locally before reporting the work as done. You can use sub-agents when
 useful. If you do, give them the issue, the relevant parent context, your plan, and these rules.
 
-Before opening the pull request, run the `code-review` skill on the change against the issue. Fix
-the findings you agree with, rerun the tests, linters, and formatters, and review again until the
-review raises nothing you would fix. Then open a pull request that is clear, concise, and easy to
-review, and that includes `Closes: #<N>` trailer.
+Before opening the pull request, run the `code-review` skill against the issue on the complete
+implementation, including branch changes and any staged, unstaged, or untracked implementation
+files. Fix the findings you agree with, rerun the tests, linters, and formatters, and review again
+until the review raises nothing you would fix. Then open a pull request that is clear, concise,
+and easy to review, and that includes `Closes: #<N>` trailer. For findings you decline, include a
+brief technical reason in the pull request description.
 
 Then see the pull request through until it is merged. After every push, check CI and fix any
 failures your changes caused. If three consecutive pushes don't turn CI green, stop and report

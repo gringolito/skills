@@ -29,6 +29,16 @@ This will install all skills and make them available to your AI agent.
 | [scope-completeness-review](./skills/scope-completeness-review/) | Check that a parent or spec issue's scope is fully built in the code, and close the issue once it is |
 | [writing-skills](./skills/writing-skills/) | Write or edit skills and other instructions meant for agents to follow |
 
+## Review workflow
+
+`code-review` returns actionable findings without publishing them. Each axis summary stays under
+200 words; finding details retain the evidence needed to act on them. `review-pr` publishes those
+findings as a comment-only pull request review.
+
+Before opening a pull request, `implement-issue` reviews the complete implementation, including
+committed branch work and staged, unstaged, or untracked implementation files. It fixes agreed
+findings and explains declined findings with brief technical reasons in the pull request description.
+
 ## License
 
 [MIT](./LICENSE)

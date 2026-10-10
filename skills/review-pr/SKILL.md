@@ -20,5 +20,4 @@ that reviewed that axis by its human-readable name, such as `GPT-6.1-Sol` rather
 `openai-codex/gpt-6.1-sol:high`. End the body with the finding count for each axis and its worst
 finding, when any exist.
 
-Write for the pull request's author: direct, specific, technical and courteous. Each finding says
-what is wrong, why it matters, and what would fix it.
+Write for the pull request's author: direct, specific, technical and courteous.
