@@ -112,8 +112,9 @@ that are not already enforced by tooling, and distinguish subjective smells from
 of documented conventions.
 
 For each finding, describe a plausible regression the current tests would miss and the
-smallest test or assertion that would catch it. Don't ask for tests that duplicate existing
-coverage, exercise private implementation details, or cover every changed line.
+smallest test or assertion that would catch it. Report a changed behavior no test covers as a
+coverage gap, not a smell. Don't ask for tests that duplicate existing coverage, exercise private
+implementation details, or cover every changed line.
 
 When executing tests or trying mutations would resolve uncertainty, use an isolated copy so
 the other reviewers' working tree remains unchanged. Distinguish observed results from

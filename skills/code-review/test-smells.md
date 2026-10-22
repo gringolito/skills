@@ -2,7 +2,7 @@
 
 Mostly from Meszaros's _xUnit Test Patterns_. Smells are judgement calls, so report each one by
 name as "possible Erratic Test". A violation of a documented testing convention is reported
-plainly, and so is a changed behavior no test covers.
+plainly.
 
 | Test smell | Description | Fix suggestion |
 | --- | --- | --- |
