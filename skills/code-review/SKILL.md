@@ -44,8 +44,8 @@ Cite the requirement behind each finding. For scope creep, point to the code nob
 
 Identify the project's documented coding conventions and architectural decisions, including files
 such as `CODING_STANDARDS.md`, `CONTRIBUTING.md`, and ADRs under common locations such as
-`docs/adrs/`, `docs/decisions/`, or `adrs/`. Leave test code and testing conventions to the tests
-axis.
+`docs/adrs/`, `docs/decisions/`, or `adrs/`. Leave test quality and testing conventions to the
+tests axis.
 
 Every applicable ADR that hasn't been superseded is a project standard. Use it as precedent for
 implementation choices, especially when it sets a cross-cutting constraint or a preferred pattern.
