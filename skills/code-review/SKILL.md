@@ -90,7 +90,8 @@ project has no tests at all, say so once instead of listing every untested behav
 Start from the project's testing conventions: testing sections in `CONTRIBUTING.md` or
 `CODING_STANDARDS.md`, ADRs about test strategy, and the patterns established tests already
 follow, such as framework, fixture style, naming, and where each kind of test lives. A new test
-that ignores an established pattern is a finding even when it works.
+that ignores an established pattern is a finding even when it works. A documented convention
+overrides this section's guidance on test level, mocking, and the smells below.
 
 The central question is whether a test would fail if the code it covers were wrong. Find the tests
 that pin down each changed behavior, including error paths, boundaries, and the branches the diff
@@ -123,7 +124,6 @@ a scratch copy of the change, not the working tree the other reviewers are readi
 ran, and keep what you observed apart from what you concluded by reading.
 
 The tests axis also looks for the test smells below, mostly from Meszaros's _xUnit Test Patterns_.
-A documented project convention overrides them.
 
 | Test smell | Description | Fix suggestion |
 | --- | --- | --- |
