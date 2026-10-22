@@ -79,72 +79,38 @@ Skip anything a tool already enforces. Smells are judgement calls, so report eac
 
 ## Tests
 
-Review whether the tests would catch a meaningful regression in the behavior the change adds or
-alters. That covers the tests the change adds, modifies, or deletes, the existing tests that
-already exercise the changed code, and the tests the change should have touched but didn't. Judge
-the tests, not the production code. An implementation defect belongs to the spec or standards axis
-and shows up here only as the missing or weak test that let it through. If the change has no
-testable behavior, such as documentation or formatting alone, skip this axis and say so. If the
-project has no tests at all, say so once instead of listing every untested behavior.
+Review whether the tests would catch meaningful regressions in behavior the change adds or
+alters. Consider added, modified, deleted, and existing tests, as well as tests that should
+have been added but weren't. Judge the tests, not the implementation. Report production defects
+under Spec or Standards, and missing protection against them under Tests.
 
-Start from the project's testing conventions: testing sections in `CONTRIBUTING.md` or
-`CODING_STANDARDS.md`, ADRs about test strategy, and the patterns established tests already
-follow, such as framework, fixture style, naming, and where each kind of test lives. A new test
-that ignores an established pattern is a finding even when it works. A documented convention
-overrides this section's guidance on test level, mocking, and the smells below.
+Follow the project's documented testing conventions and established patterns, including
+test strategy ADRs. They take precedence over the guidance below. If the change has no
+testable behavior, skip this axis. If the project has no tests, report that once rather than
+listing every untested behavior.
 
-The central question is whether a test would fail if the code it covers were wrong. Find the tests
-that pin down each changed behavior, including error paths, boundaries, and the branches the diff
-adds, and weigh how much protection each needs by its risk, not by its line count. When the spec
-axis has a spec, map its requirements to tests and report any requirement nothing verifies. When
-it doesn't, review against the contracts evident in the change and say so. For a bug fix, a test
-should fail without the fix. If the fix could be reverted with the test still passing, the test
-doesn't guard the bug.
+Identify the behavior each test protects and whether a plausible implementation mistake
+would make it fail. Check meaningful boundaries, error paths, and requirements from the spec.
+For bug fixes, verify that the tests would fail without the fix. Judge assertions by what they
+prove, not test names, passing results, or coverage numbers.
 
-Judge a test by what it establishes, not by its name, its passing run, or the coverage it adds.
-Read each assertion and ask whether a plausible mistake in the code, such as an off-by-one, a
-swapped argument, or a dropped condition, would make it fail. An assertion that survives every
-such mistake is decoration. Watch for expected values computed by the same logic under test, and
-for mocks or fixtures that replace the behavior the test claims to verify or drop the part of a
-contract the scenario depends on.
+Look for missing or weak assertions, expected values derived from the implementation under
+test, and mocks or fixtures that hide the behavior being verified. Scrutinize deleted or
+disabled tests, weakened assertions, and updated snapshots or golden files that may have been
+changed merely to accommodate the implementation.
 
-Treat changes to existing tests with suspicion. Deleted tests, newly skipped or disabled tests,
-loosened assertions, widened tolerances, and regenerated snapshots or golden files each need a
-reason the change supplies. Without one, report them as possibly bending the tests to fit the code.
+Check that tests exercise the appropriate boundaries. Prefer focused tests for isolated logic
+and tests that cross real boundaries for integration behavior. Recommend broader tests only
+when existing tests cannot catch a concrete failure.
 
-Check that each test runs at a level that can expose the likely failure. Isolated logic belongs in
-unit tests rather than reached only through a slow end-to-end path. Failures in wiring,
-persistence, serialization, or external contracts need a test that crosses that boundary for real
-instead of mocking both sides of it. Mocks are for boundaries the project doesn't own or can't run
-cheaply, and a test that mostly asserts on its own mocks verifies nothing. Recommend a broader
-test only when you can name the failure the existing tests can't catch.
+Read [test smells](test-smells.md) when evaluating test quality. Apply only relevant smells
+that are not already enforced by tooling, and distinguish subjective smells from violations
+of documented conventions.
 
-When running a focused test or trying a small mutation would settle an uncertain finding, do it in
-a scratch copy of the change, not the working tree the other reviewers are reading. Say what you
-ran, and keep what you observed apart from what you concluded by reading.
+For each finding, describe a plausible regression the current tests would miss and the
+smallest test or assertion that would catch it. Avoid duplicate coverage, testing private
+implementation details, or demanding tests for every changed line.
 
-The tests axis also looks for the test smells below, mostly from Meszaros's _xUnit Test Patterns_.
-
-| Test smell | Description | Fix suggestion |
-| --- | --- | --- |
-| Assertion-Free Test | The test runs code but asserts nothing meaningful, or asserts only that no exception was thrown | Assert on the observable outcome the behavior promises |
-| Overspecified Test | The test asserts on implementation details such as call order, private state, or exact mock interactions | Assert on outputs and observable effects so refactoring doesn't break it |
-| Eager Test | One test verifies several unrelated behaviors | Split it so each test has one reason to fail |
-| Assertion Roulette | Many assertions whose failure output doesn't say which expectation broke | Split the test or add messages that name the expectation |
-| Obscure Test | The setup buries what is being tested and why the expected value is right | Name the scenario, keep only relevant setup, and derive expected values visibly |
-| Mystery Guest | The test depends on an external file, fixture, or environment the reader can't see | Inline the data or name the fixture so its relevance is obvious |
-| General Fixture | A shared setup builds far more than any single test needs | Give each test the minimal fixture it uses |
-| Conditional Test Logic | `if`, loops, or `try` inside a test decide what gets asserted | Make each path its own test, or use a parameterized test |
-| Erratic Test | The outcome depends on time, randomness, ordering, sleeps, concurrency, or the network | Inject clocks and seeds, isolate state, and wait on conditions instead of durations |
-| Interacting Tests | Tests share mutable state, so one passes or fails depending on another | Reset or isolate state per test |
-| Test Code Duplication | The same setup or assertion shape is copied across tests, hiding what differs between them | Extract a helper, builder, or parameterized case that keeps the differences visible |
-| Test Logic in Production | Production code gains flags, hooks, or branches that exist only for tests | Move the seam to a proper dependency injection point |
-
-Keep findings tied to the change. For each gap, describe a concrete wrong behavior the current
-tests would let pass and the smallest test or assertion that would catch it. Don't ask for tests to
-raise coverage, exercise private helpers, duplicate existing protection, or suit a preferred
-style, and don't require a test for every changed line. Report only smells that are relevant to
-the change and that a reviewer could reasonably act on, and skip what a tool already enforces,
-such as coverage thresholds or lint rules for tests. Report each smell by name as "possible
-Erratic Test", apart from violations of documented testing conventions. A changed behavior no test
-covers is a demonstrated problem, not a smell, so report it plainly.
+When executing tests or trying mutations would resolve uncertainty, use an isolated copy so
+the other reviewers' working tree remains unchanged. Distinguish observed results from
+conclusions based on code inspection.
