@@ -28,23 +28,30 @@ Change only what the issue requires. All agents writing code use the `tdd` skill
 linters, and formatters locally before reporting the work as done. You can use sub-agents when
 useful. If you do, give them the issue, the relevant parent context, your plan, and these rules.
 
-Before opening the pull request, run the `code-review` skill against the issue on the complete
-implementation, including branch changes and any staged, unstaged, or untracked implementation
-files. Fix the findings you agree with, rerun the tests, linters, and formatters, and review again
-until the review raises nothing you would fix. Then open a pull request that is clear, concise,
-and easy to review, and that includes `Closes: #<N>` trailer. For findings you decline, include a
-brief technical reason in the pull request description.
+Before opening the pull request, run the `code-review` skill against the issue and the complete
+implementation, including branch commits, staged, unstaged, and untracked implementation files.
+Evaluate each finding on its merits. Make the smallest changes necessary to address valid concerns,
+avoid scope creep, and push back on findings that you disagree with.
 
-Then see the pull request through until it is merged. After every push, check CI and fix any
-failures your changes caused. If three consecutive pushes don't turn CI green, stop and report
-it as a blocker. Leave pre-existing and environmental failures alone, and never make CI pass
-by weakening or deleting a test.
+Allow up to three review rounds. The first reviews the complete implementation; subsequent rounds
+focus on changes made since the previous review and any outstanding findings. Extend the limit to
+five rounds only when unresolved findings involve security, permissions, authentication, or data
+loss. You may stop the reviews early when only nits or no actionable findings remain. After
+addressing findings, run the tests, linters, and formatters locally before reviewing again. Continue
+until no findings remain that warrant changes or the round limit is reached.
+
+Then open a clear, concise, reviewable pull request with a `Closes: #<N>` trailer. Briefly explain
+any declined or unresolved findings and their technical rationale in the pull request description.
+See the pull request through until it is merged. After every push, check CI and fix any failures
+your changes caused. If three consecutive pushes don't turn CI green, stop and report it as a
+blocker. Leave pre-existing and environmental failures alone, and never make CI pass by weakening
+or deleting a test.
 
 Address every review or comment on the pull request with the `address-pr-reviews` skill. Run the
 relevant tests, linters, and formatters locally before each push, and get CI green again.
 
-Keep watching the pull request for new comments and further review rounds, and repeat the
-same cycle for each one, until the pull request is merged.
+Keep watching the pull request for new comments and further review rounds, and repeat the same
+cycle for each one, until the pull request is merged.
 
 Always add AI attribution to every commit, pull request, review comment, and reply, including
 those written by sub-agents.
