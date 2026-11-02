@@ -19,9 +19,9 @@ The change is whatever the caller names: a branch, a pull request, or the uncomm
 progress. When nothing is named, review the current branch against its base.
 
 Run each axis in its own `reviewer` agent, in parallel, so no axis pollutes another's context and
-none shares the author's. Pass each reviewer its axis reference as written, with any reference it
-links and the reporting rules below, instead of summarizing them, so every reviewer applies the
-same definition. You don't need to read the axis references yourself.
+none shares the author's. Pass each reviewer its axis reference as written, with the reporting
+rules below, instead of summarizing them, so every reviewer applies the same definition. You
+don't need to read the axis references yourself.
 
 Each reviewer opens its report with its exact model ID, copied from its system prompt or runtime
 configuration. If neither names a model, it says so rather than guessing. Keep each axis summary
