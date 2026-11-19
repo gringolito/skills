@@ -34,6 +34,11 @@ change adds or rewrites.
 
 ## What the reader needs
 
+The reader is a capable developer with solid technical knowledge and none of this work's context.
+Explaining what they already know, such as a common term, a standard tool, or how a language
+feature works, wastes their attention. What they can't know, such as why the change was made or a
+constraint outside the code, stays.
+
 Keep what the reader needs to do their job. Someone reading a commit message months later needs
 what changed and why. A reviewer reading a pull request body needs what the change does, why,
 and where to look. Whoever picks up an issue needs what done means. The next person changing
@@ -151,6 +156,7 @@ Each finding names one of these patterns. The fix column guides the main agent.
 | Sprawl | A sentence makes more than one point, splits subject from verb with a long clause, or opens with a long lead-in. | Split it and put the subject and verb first. |
 | Throat-clearing | A sentence announces what follows or that something is worth noting: "This PR...", "Note that", "It's worth mentioning". | Start with the claim. |
 | Narration | The prose says what the code or diff visibly does, or walks through files the reader will open anyway. | Cut it. Keep the why and what the reader can't see. |
+| Known basics | The prose explains something a capable developer already knows: a common term, a standard tool, or how a language feature works. | Cut it. |
 | History | A doc, comment, or skill file tells how it got here: earlier designs, review rounds, "now", "no longer", "we changed". A commit message or pull request body that says what the change replaces is doing its job. | State the current state. History lives in git and the pull request thread. |
 | Defensive justification | Rejected options nobody would propose, edge cases no reader will hit, or arguments for a choice nobody questioned. | Keep only the alternatives a reader would raise. |
 | Enumeration over rule | Every instance is listed where one rule covers them, and readers read the list through rather than look things up in it. | State the rule. |
