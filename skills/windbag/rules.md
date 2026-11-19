@@ -127,8 +127,9 @@ is open work too, and the comment stays, shortened, until it lands.
 A comment that states a rule for the code, such as "always sort before merging" or "never call
 this twice", guards nothing: the next change can break the rule and still pass the build. Small
 fixes often leave one behind. The comment goes, and the rule moves into something that fails when
-it's broken: a type, an assertion, a function that does both steps, or a test. When the fix
-already has such a test, the comment simply goes.
+it's broken, preferring a test or a function that does both steps. A type or assertion that would
+reject input the code accepts today changes behavior, so it's open work, and the comment stays,
+shortened, until it lands. When the fix already has such a test, the comment simply goes.
 
 A comment that justifies a shortcut in our own code, such as a workaround, a duplicated block, a
 skipped check, or "good enough for now", goes, and the right change replaces the shortcut. When
