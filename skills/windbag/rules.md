@@ -11,13 +11,16 @@ Read like a copy editor with a red pen and a word budget. Every sentence is guil
 its place. Hunt for cuts, and prefer deleting a piece whole to shortening it.
 
 Make each finding a concrete cut: the exact words to delete, or the text that replaces them, so
-the main agent only decides yes or no. Edit nothing. Settle every check yourself instead of
-leaving it to the main agent, and leave out any finding another rule here rules out, such as one
-touching protected text.
+the main agent only decides yes or no. Edit nothing. Settle every check yourself: a report that
+lists unverified items, says it didn't check something, or leaves a decision to the main agent is
+invalid and gets rerun, so settle the check or drop the finding. Leave out any finding another
+rule here rules out, such as one touching protected text.
 
 Work in this order, and finish each step before starting the next:
 
-1. Fetch the prose your brief points to and the diff it belongs to.
+1. Fetch the prose your brief points to and the diff it belongs to. Read only the ranges your brief
+   names and the code a cut depends on, and search for copies with a text search instead of
+   opening whole files.
 2. Cut pass: make every piece in your batch earn its place against the cut patterns in the
    catalogue. Pieces over budget get the hardest look.
 3. Reference pass: check references and claims only in what survives the cut pass, as described
@@ -146,7 +149,8 @@ options, environment variables, line numbers, versions, counts, and descriptions
 behavior it names. Report each as stale, with what the code says instead, or as aging because it
 pins a detail that changes as the code evolves. Either kind is cut or generalized when the reader
 doesn't need it. A claim the code plainly contradicts, noticed during these checks, is a finding
-too. Skip claims about a dependency instead of reading its source.
+too. Skip claims about a dependency instead of reading its source. A claim you can't confirm, or
+one with no source, isn't a reason to cut; cut it only when its reader doesn't need it.
 
 ## Catalogue
 
@@ -160,7 +164,7 @@ the first table and the reference pass the second.
 | Buried point | Read only the first sentence or line. It doesn't say what this is, what changed, or what to do. | Put the point first; details follow. Restructure. |
 | Several jobs | The piece has more than one job, such as recording a decision and tracking open work, so each job's reader wades through the others. | Split it, or move each job to its home: the code, an ADR, an issue, a linked doc. Restructure. |
 | Repeated statement | The same fact appears twice within one comment, section, message, or body, or restates a source the reader already has open, such as the issue a pull request links. | Keep it once, where the reader looks first. |
-| Boilerplate | The same comment or passage appears in more than one file in scope, such as a header or setup note pasted into each. Search the scope for a comment's wording before keeping it. A copy counts even when each file could be read on its own. | Keep one copy where readers look, such as the shared definition or a doc, and delete the rest. |
+| Boilerplate | The same comment or passage appears in more than one file in scope, such as a header or setup note pasted into each. Search the scope for a comment's wording before keeping it. A copy counts even when each file could be read on its own. A fact about the object it annotates, such as a table's access policy, isn't boilerplate: each object's reader needs it there. | Keep one copy where readers look, such as the shared definition or a doc, and delete the rest. |
 | Mirrored comment | A comment is copied into code that mirrors or restates other code, such as a migration's down section or a `CREATE OR REPLACE` that redefines an earlier object. | Delete the copy; the original keeps it. |
 | Ceremony | Headings, bullets, tables, or template sections wrap a line or two of content, or say "N/A". | Write plain sentences. Drop empty sections no template requires. |
 | Sprawl | A sentence makes more than one point, splits subject from verb with a long clause, or opens with a long lead-in. | Split it and put the subject and verb first. |
@@ -209,7 +213,7 @@ An issue body says what done means early. Its acceptance criteria don't restate 
 Report findings only, leaving out summaries of what you checked or verified. Each finding gives:
 
 - Location: file and line range, commit, pull request body, or issue number.
-- Pattern, from the catalogue.
+- Pattern: a catalogue name, exactly as written. A finding no pattern fits is left out.
 - The cut: the exact words to delete, or the replacement text.
 - What's wrong, in one sentence.
 - Facts the reader needs in those words, and the exact file and line where each already lives, if
@@ -226,5 +230,6 @@ you can name its reader and what they'd lose without it, and then in as few word
 A replacement keeps the author's voice and formatting, such as line width and heading style. It
 keeps whole sentences, since dropping articles, verbs, or connectives makes the reader decode
 instead of read. It doesn't make the text longer, unless it corrects something wrong. A fact the
-reader needs that lives nowhere else moves before it's cut. A code change keeps behavior, builds,
-and passes the tests that cover it.
+reader needs that lives nowhere else moves before it's cut. A replacement points by file, heading,
+or symbol, without line numbers, since the same pass may move them. A code change keeps behavior,
+builds, and passes the tests that cover it.
