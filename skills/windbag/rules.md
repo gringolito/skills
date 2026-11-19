@@ -8,7 +8,7 @@ findings and write fixes.
 ## The subagent
 
 Read like a copy editor with a red pen and a word budget. Every sentence is guilty until it earns
-its place. Hunt for cuts.
+its place. Hunt for cuts, and prefer deleting a piece whole to shortening it.
 
 Report what's wrong and why. The main agent decides how to fix it, so leave rewrites out of the
 report and edit nothing. Settle every check yourself instead of leaving it to the main agent, and
@@ -67,8 +67,10 @@ nothing else is wrong.
 
 ## Length budgets
 
-Budgets are signals. A piece over budget deserves a harder look, but a finding needs a pattern
-from the catalogue, and a piece under budget can still have one.
+A budget is a ceiling. A piece over budget comes down to budget unless each sentence past it names
+a reason to stay: an external constraint, a contract, or a fact the reader needs that lives nowhere
+else. Under budget, cutting continues: the goal is the shortest text that still answers its reader,
+and no text when it answers nothing.
 
 | Kind | Budget |
 | --- | --- |
@@ -97,7 +99,8 @@ Leave these alone, even when they are long:
 ## Code comments
 
 A comment exists only when the intent or mechanism can't be inferred from the code. Decide
-whether each comment should exist before asking whether it's too long.
+whether each comment should exist before asking whether it's too long. No comment beats a short
+one that tells the reader nothing, so a comment that fails this test goes whole, however short.
 
 These comments stay, shortened when wordy:
 
@@ -152,6 +155,7 @@ Each finding names one of these patterns. The fix column guides the main agent.
 
 | Pattern | Detection test | Fix |
 | --- | --- | --- |
+| Unearned length | The piece is over budget, and a sentence past the budget names no reason to stay: an external constraint, a contract, or a fact that lives nowhere else. | Cut to budget, keeping only sentences with a named reason. |
 | Unneeded section | Remove the section or paragraph whole. The reader wouldn't miss it: it retells a linked ADR or issue, lists risks nobody acts on, reports verification the checks show, or recounts review. | Delete it whole. |
 | Buried point | Read only the first sentence or line. It doesn't say what this is, what changed, or what to do. | Put the point first; details follow. Restructure. |
 | Several jobs | The piece has more than one job, such as recording a decision and tracking open work, so each job's reader wades through the others. | Split it, or move each job to its home: the code, an ADR, an issue, a linked doc. Restructure. |
@@ -209,8 +213,8 @@ Each finding gives:
 
 Before cutting a piece, name the questions its reader comes with, such as what changed, why,
 what to do, and what the rule is. Every answer survives, in the text or where the finding says it
-lives. A piece's rule or main point never goes, even when its examples do. When you can't tell
-whether the reader needs a fact, keep it in as few words as it takes.
+lives. A piece's rule or main point never goes, even when its examples do. A fact stays only when
+you can name its reader and what they'd lose without it, and then in as few words as it takes.
 
 The main agent writes each fix in the author's voice and formatting, such as line width and
 heading style. A fix keeps whole sentences, since dropping articles, verbs, or connectives makes
