@@ -27,6 +27,7 @@ This will install all skills and make them available to your AI agent.
 | [implement-spec](./skills/implement-spec/) | Implement every sub-issue of a specification by running `implement-issue` on each in dependency order |
 | [review-pr](./skills/review-pr/) | Review a pull request with `code-review` and post the findings on it as a review |
 | [scope-completeness-review](./skills/scope-completeness-review/) | Check that a parent or spec issue's scope is fully built in the code, and close the issue once it is |
+| [windbag](./skills/windbag/) | Cut verbose comments, docs, pull request and issue bodies, and commit messages during review so readers read them to the end |
 | [writing-skills](./skills/writing-skills/) | Write or edit skills and other instructions meant for agents to follow |
 
 ## Review workflow
