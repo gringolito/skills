@@ -124,6 +124,17 @@ names the exact symbol. The change keeps behavior exactly as it is; one that wou
 is a separate fix, reported as open work. When the change reaches beyond the review's scope, it
 is open work too, and the comment stays, shortened, until it lands.
 
+A comment that states a rule for the code, such as "always sort before merging" or "never call
+this twice", guards nothing: the next change can break the rule and still pass the build. Small
+fixes often leave one behind. The comment goes, and the rule moves into something that fails when
+it's broken: a type, an assertion, a function that does both steps, or a test. When the fix
+already has such a test, the comment simply goes.
+
+A comment that justifies a shortcut in our own code, such as a workaround, a duplicated block, a
+skipped check, or "good enough for now", goes, and the right change replaces the shortcut. When
+that change would alter behavior or reaches beyond the review's scope, it's open work: an issue
+tracks it, and the comment shrinks to the issue link.
+
 Commented-out code, banners, and TODOs without an issue link go. A TODO worth doing becomes an
 issue.
 
@@ -166,6 +177,8 @@ Each finding names one of these patterns. The fix column guides the main agent.
 | Stale reference | A reference no longer matches the code. | Fix it if the reader needs it. Otherwise cut it. |
 | Restating comment | The comment says what the code or the name it annotates already says. | Delete it. |
 | Surprise comment | The comment explains behavior of our own code that the code could make obvious. | Delete it and change the code, as in Code comments. |
+| Unguarded rule | A comment states a rule the code doesn't enforce: "always", "never", "must", "make sure". | Delete it and enforce the rule in the code or a test, as in Code comments. |
+| Excuse comment | A comment justifies a shortcut in our own code instead of fixing it: a workaround, a duplicate, a skipped check, "for now". | Delete it and make the right change, or open an issue, as in Code comments. |
 | Dead text | Commented-out code, banners, or a TODO without an issue. | Delete it, opening an issue for a TODO worth doing. |
 | False claim | A comment or doc says something the code plainly contradicts, noticed while settling a cut. | Correct the wrong part in no more words than it took, or report the code as open work. |
 | Process chatter | The author reports what they ran, checked, or tried. | Keep test evidence a reviewer acts on, in a line. Cut the rest. |
@@ -222,6 +235,7 @@ The main agent rejects a finding when:
 - Acting on it would lose something the reader needs: a fact with nowhere to go, a qualifier that
   bounds a claim, or an entry from reference material.
 - It's a matter of taste: the original already reads to the end.
-- It flags a comment on the keep list, or treats a constraint we can't change as our own surprise.
+- It flags a comment on the keep list, or treats a constraint we can't change as our own surprise
+  or shortcut.
 - It calls a reference stale, or a claim false, without evidence from the code.
 - It's about a claim the change didn't add, or verifies prose rather than cutting it.
