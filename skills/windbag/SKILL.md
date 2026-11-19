@@ -2,41 +2,48 @@
 name: windbag
 description: >-
   Cut verbose prose so readers read it to the end. Use during code review and before opening or
-  updating a pull request, on the code comments, docs, and skill files in the diff, the pull
-  request body, the bodies of issues it links, and the branch's commit messages. Also use when the
-  user asks to cut verbose prose, shorten documentation, or make text more readable.
+  updating a pull request, on the code comments and docs in the diff, the pull request body, the
+  bodies of issues it links, and the branch's commit messages. Also use when the user asks to cut
+  verbose prose, shorten documentation, or make text more readable.
 ---
 
 Your job is to cut every comment, doc passage, and sentence its reader doesn't need, and to
 shorten what remains. Long prose gets skipped, and skipped text informs no one. Every decision
 here, including each tie you break, answers one question: will a reader read this to the end?
-You're done when every accepted finding is applied, protected text is untouched, and every fact a
-cut removed is still where its reader will find it.
+You're done when every accepted finding is applied, protected text is untouched, and no
+information the reader needs has been lost.
 
 The scope is what the caller names: files, a branch, or a pull request. For a branch or pull
-request, it's the docs, skill files, and code comments in the diff, the pull request body, the
-bodies of issues it links, and the commit messages. When nothing is named, use the current branch
-against its base. Agent replies are out of scope.
+request, review the docs and code comments in the diff, the pull request body, relevant linked
+issues, and the branch's commit messages. When nothing is named, use the current branch against
+its base.
 
-Sonic agents find cuts with the rules in [rules.md](rules.md), and you judge findings and write
-fixes with them, so read them before you start.
+Spawn one `sonic` subagent for each part of the scope that has prose: comments, docs; the pull
+request and issue bodies; and commit messages.
 
-Spawn one `sonic` subagent for each part of the scope that has prose: comments, docs, and skill
-files; the pull request and issue bodies; and the commit messages. Each fresh context reads the
-prose the way someone outside this work will. Each one fetches its own text and diffs with git and
-gh, so give it only the path to the rules and where its prose lives, such as the base and head
-refs, the pull request and issue numbers, or the named files.
+Each subagent acts as an independent reader whose goal is to find prose that can be removed,
+shortened, or restructured so readers are more likely to read it to the end. Have each subagent
+follow [rules.md](rules.md), examine every applicable pattern in its catalogue, and report
+actionable findings with the evidence required by the rules.
 
-Finding cuts is the sonic agents' job, so don't search the prose for ones they missed. Judge every
-finding against the rules, reject it on the grounds they list, and decide each unsure finding by
-checking its evidence yourself. When a report went wrong as a whole, such as skipping the
-catalogue or misreading the scope, rerun that sonic agent once and name what went wrong. Judge
-the second report on its own without rerunning again.
+Each subagent works in a fresh context and fetches its own text and diffs. Give it only the
+path to the rules and where its prose lives, such as the base and head refs, the pull request
+and issue numbers, or the named files.
 
-Write the fixes for what you accept. Edit files directly. For a surprise comment, make the code
-change, then build and run the tests that cover it. Rewrite the branch's commits to apply commit
-message findings, and ask the user before force-pushing. Edit pull request and issue bodies in
-place.
+Judge every finding against the rules. Reject findings on the grounds the rules establish, and
+resolve uncertain ones by checking their evidence yourself. When a report went wrong as a whole,
+such as skipping the catalogue or misreading the scope, rerun that subagent once and explain what
+went wrong. Judge the second report on its own without rerunning again.
 
-Tell the user what changed, where moved facts landed, which findings you rejected and why, and
-what open work remains.
+Apply the accepted findings. Edit files directly, preserving their meaning and the information
+readers need. When changing a comment reveals that the code itself needs clarification, make the
+smallest necessary code change, then build and run the tests.
+
+Apply commit message findings to unmerged commits. Obtain approval before rewriting published
+history or force-pushing. Edit pull request descriptions directly. Review linked issues for
+context, but do not rewrite their bodies merely because the pull request references them. Only
+edit an issue when it is explicitly within the requested editing scope, preserving its agreed
+requirements and intent.
+
+Summarize meaningful changes, where relocated information ended up, rejected findings that
+warrant explanation, and any unresolved work.

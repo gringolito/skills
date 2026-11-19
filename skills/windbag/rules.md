@@ -1,16 +1,14 @@
 # Windbag rules
 
 One question decides every finding: will a reader read this to the end? Long prose gets skipped,
-and skipped text informs no one. Windbag cuts prose; it isn't a fact checker. Sonic agents use
-these rules to find what to cut. The main agent uses them to judge findings and to write every fix.
+and skipped text informs no one. Windbag cuts unnecessary prose. Subagents use these rules to
+identify unnecessary prose and writing that needs restructuring. The main agent uses them to judge
+findings and write fixes.
 
-## The sonic agent
+## The subagent
 
 Read like a copy editor with a red pen and a word budget. Every sentence is guilty until it earns
-its place. Hunt for cuts, guard the facts a cut would lose, and say plainly when you're unsure.
-
-You're the only pass that finds cuts. The main agent judges your findings but doesn't search the
-prose for ones you missed, so a cut you skip stays in.
+its place. Hunt for cuts.
 
 Report what's wrong and why. The main agent decides how to fix it, so leave rewrites out of the
 report and edit nothing. Settle every check yourself instead of leaving it to the main agent, and
@@ -19,10 +17,9 @@ leave out any finding that the grounds in Rejecting a finding would rule out.
 Work in this order, and finish each step before starting the next:
 
 1. Fetch the prose your brief points to and the diff it belongs to.
-2. Measure each piece against its budget below, and list the pieces over budget.
-3. Go through each piece with every pattern in the catalogue, one pattern at a time, so none goes
-   unchecked. Pieces over budget get the hardest look.
-4. Read the code only where a cut depends on it, and only for lines the change adds, as described
+2. Go through each piece with every pattern in the catalogue. Pieces over budget get the hardest
+   look.
+3. Read the code only where a cut depends on it, and only for lines the change adds, as described
    in Reading the code.
 
 ## Scope
@@ -45,8 +42,7 @@ and where to look. Whoever picks up an issue needs what done means. The next per
 code needs what the code can't say. A doc's reader needs what to do and when.
 
 A finding has to earn its place too. It either makes the reader more likely to finish, or it
-points at something wrong. Text a reader already reads to the end gets no finding, so a matter of
-taste isn't one.
+points at something wrong.
 
 Wording, extra examples, and minor facts can go. Precision stays: a qualifier that bounds a claim,
 such as "or one before it" or "at most daily", is information. A fact the reader needs stays,
@@ -95,9 +91,8 @@ Leave these alone, even when they are long:
 - Commit trailers, closing keywords such as `Closes #12`, and AI-attribution footers.
 - Tool directives such as `//go:generate`, build tags, and `// prettier-ignore`. Lint and type
   suppressions follow the comment rules below.
-- Frontmatter keys and other fields a tool reads, and sections that a template or another skill
-  requires. Their content can be shortened, but the section stays.
-- Text outside the scope, including agent replies and other people's comments.
+- Frontmatter keys and other fields a tool reads, and sections that a template requires. Their
+  content can be shortened, but the section stays.
 
 ## Code comments
 
@@ -106,13 +101,10 @@ whether each comment should exist before asking whether it's too long.
 
 These comments stay, shortened when wordy:
 
-- License and legal headers.
 - Non-obvious behavior forced by an external dependency, platform, vendor, protocol, or data
   source we can't change.
 - Doc comments that define a public API contract.
 - Issue or RFC links that explain a constraint the code can't express.
-- `// prettier-ignore`, and lint suppressions whose rule is faulty, pedantic, or style-only for
-  that line.
 
 For suppressions such as `eslint-disable`, `@ts-ignore`, `@ts-expect-error`, `//nolint`, `# noqa`,
 or `# type: ignore`, look up the rule. When it catches real bugs or protects correctness or
@@ -199,8 +191,7 @@ wouldn't guess, including what the change replaces. A squash message describes t
 change, not each intermediate commit or review round, but the facts those commits record about
 the final code stay unless the code or its docs already hold them.
 
-A pull request body opens with what the change does and why. Its structure belongs to the
-`craft-pr` skill; Windbag cuts within it.
+A pull request body opens with what the change does and why. 
 
 An issue body says what done means early. Its acceptance criteria don't restate its scope.
 
@@ -210,7 +201,6 @@ Each finding gives:
 
 - Location: file and line, commit, pull request body, or issue number.
 - Pattern, from the catalogue.
-- Certainty: certain, or unsure with what would settle it.
 - What's wrong, quoting the words at issue.
 - Facts the reader needs in those words, and where each already lives, if anywhere.
 - Evidence from the code, for claims, references, and comment decisions.
@@ -227,16 +217,3 @@ heading style. A fix keeps whole sentences, since dropping articles, verbs, or c
 the reader decode instead of read. It doesn't make the text longer, unless it corrects something
 wrong. A fact the reader needs that lives nowhere else moves before it's cut. A code change keeps
 behavior, builds, and passes the tests that cover it.
-
-## Rejecting a finding
-
-The main agent rejects a finding when:
-
-- It touches protected text, or text outside the scope.
-- Acting on it would lose something the reader needs: a fact with nowhere to go, a qualifier that
-  bounds a claim, or an entry from reference material.
-- It's a matter of taste: the original already reads to the end.
-- It flags a comment on the keep list, or treats a constraint we can't change as our own surprise
-  or shortcut.
-- It calls a reference stale, or a claim false, without evidence from the code.
-- It's about a claim the change didn't add, or verifies prose rather than cutting it.
