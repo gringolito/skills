@@ -37,8 +37,8 @@ refs or the pull request and issue numbers, so it can search the rest of the sco
 Tell it that a report with an unverified list, a check handed back, or a pattern name outside the
 catalogue is invalid.
 
-Before judging a report, check it as a whole. When it verifies instead of cutting, skips the
-catalogue, misreads the scope, or hands checks back to you, rerun that subagent once and name
+Before judging a report, check it as a whole. When it's invalid by the brief's terms, verifies
+instead of cutting, skips the catalogue, or misreads the scope, rerun that subagent once and name
 what went wrong. Don't rerun it again. Judge the findings of both reports, so a finding the rerun
 drops is still judged.
 
