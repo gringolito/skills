@@ -20,9 +20,10 @@ its base.
 
 Split the scope into small batches and spawn one `sonic` subagent per batch, in parallel. Sonic
 runs on a small model that loses track of the catalogue as its input grows, so keep each batch to
-a few files or about 300 lines of prose. Keep each kind of prose in its own batches: comments and
-docs, the pull request and issue bodies, and commit messages. Keep every piece whole within one
-batch, since its reader reads all of it.
+about 300 lines of prose, splitting a long file by its sections or hunks. Keep each kind of prose
+in its own batches: comments and docs, the pull request and issue bodies, and commit messages.
+Keep every comment, paragraph, and section whole within one batch, since its reader reads all of
+it.
 
 Each subagent acts as an independent reader whose goal is to find prose that can be removed,
 shortened, or restructured so readers are more likely to read it to the end. Have each subagent
@@ -31,7 +32,7 @@ actionable findings with the evidence required by the rules.
 
 Each subagent works in a fresh context and fetches its own text and diffs. Give it only the
 path to the rules and where its prose lives, such as the base and head refs, the pull request
-and issue numbers, or the files and commits in its batch.
+and issue numbers, or the files, headings, line ranges, and commits in its batch.
 
 Judge every finding against the rules. Reject findings on the grounds the rules establish, and
 resolve uncertain ones by checking their evidence yourself. When a report went wrong as a whole,
