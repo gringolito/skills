@@ -1,10 +1,10 @@
 # Windbag rules
 
 One question decides every finding: will a reader read this to the end? Long prose gets skipped,
-and skipped text informs no one. Windbag cuts prose; it isn't a fact checker. Scouts use these
-rules to find what to cut. The main agent uses them to judge findings and to write every fix.
+and skipped text informs no one. Windbag cuts prose; it isn't a fact checker. Sonic agents use
+these rules to find what to cut. The main agent uses them to judge findings and to write every fix.
 
-## The scout
+## The sonic agent
 
 Read like a copy editor with a red pen and a word budget. Every sentence is guilty until it earns
 its place. Hunt for cuts, guard the facts a cut would lose, and say plainly when you're unsure.

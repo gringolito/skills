@@ -18,21 +18,20 @@ request, it's the docs, skill files, and code comments in the diff, the pull req
 bodies of issues it links, and the commit messages. When nothing is named, use the current branch
 against its base. Agent replies are out of scope.
 
-Scouts find cuts with the rules in [rules.md](rules.md), and you judge findings and write fixes
-with them, so read them before you start.
+Sonic agents find cuts with the rules in [rules.md](rules.md), and you judge findings and write
+fixes with them, so read them before you start.
 
-Spawn one scout subagent for each part of the scope that has prose: comments, docs, and skill
+Spawn one `sonic` subagent for each part of the scope that has prose: comments, docs, and skill
 files; the pull request and issue bodies; and the commit messages. Each fresh context reads the
-prose the way someone outside this work will. Scouts fetch their own text and diffs, so use a
-subagent type that can run git and gh; a fast model is enough. Give each the path to the rules and
-where its prose lives, such as the base and head refs, the pull request and issue numbers, or the
-named files.
+prose the way someone outside this work will. Each one fetches its own text and diffs with git and
+gh, so give it only the path to the rules and where its prose lives, such as the base and head
+refs, the pull request and issue numbers, or the named files.
 
-Finding cuts is the scouts' job, so don't search the prose for ones they missed. Judge every
+Finding cuts is the sonic agents' job, so don't search the prose for ones they missed. Judge every
 finding against the rules, reject it on the grounds they list, and decide each unsure finding by
 checking its evidence yourself. When a report went wrong as a whole, such as skipping the
-catalogue or misreading the scope, rerun that scout once and name what went wrong. Judge the
-second report on its own without rerunning again.
+catalogue or misreading the scope, rerun that sonic agent once and name what went wrong. Judge
+the second report on its own without rerunning again.
 
 Write the fixes for what you accept. Edit files directly. For a surprise comment, make the code
 change, then build and run the tests that cover it. Rewrite the branch's commits to apply commit
