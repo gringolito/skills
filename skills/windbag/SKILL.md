@@ -42,6 +42,9 @@ Judge each finding on its own. Reject one only by citing the rule it breaks and 
 it does; a ground the rules don't state isn't one. Findings that share a pattern or a file are
 still judged one at a time, and none is rejected as part of a group.
 
+Before applying, check that every place an accepted finding says a fact lives survives the other
+accepted cuts. When two cuts each rely on the other's copy, drop one of them so a copy stays.
+
 Apply the accepted findings. Edit files directly, preserving their meaning and the information
 readers need. When changing a comment reveals that the code itself needs clarification, make the
 smallest necessary code change, then build and run the tests.

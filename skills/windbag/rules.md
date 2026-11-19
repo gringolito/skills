@@ -212,7 +212,8 @@ Report findings only, leaving out summaries of what you checked or verified. Eac
 - Pattern, from the catalogue.
 - The cut: the exact words to delete, or the replacement text.
 - What's wrong, in one sentence.
-- Facts the reader needs in those words, and where each already lives, if anywhere.
+- Facts the reader needs in those words, and the exact file and line where each already lives, if
+  anywhere. A finding that deletes a copy names the copy that stays the same way.
 - Evidence from the code, for references, claims, and comment decisions.
 
 ## Fixes
