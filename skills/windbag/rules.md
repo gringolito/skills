@@ -67,10 +67,11 @@ nothing else is wrong.
 
 ## Length budgets
 
-A budget is a ceiling. A piece over budget comes down to budget unless each sentence past it names
-a reason to stay: an external constraint, a contract, or a fact the reader needs that lives nowhere
-else. Under budget, cutting continues: the goal is the shortest text that still answers its reader,
-and no text when it answers nothing.
+A budget is a ceiling. In a piece over budget, every sentence has to name a reason to stay: an
+external constraint, a contract, or a fact the reader needs that lives nowhere else. The rest go,
+and the piece comes down to budget unless the main agent names the reason for what's left over.
+Under budget, cutting continues: the goal is the shortest text that still answers its reader, and
+no text when it answers nothing.
 
 | Kind | Budget |
 | --- | --- |
@@ -155,7 +156,7 @@ Each finding names one of these patterns. The fix column guides the main agent.
 
 | Pattern | Detection test | Fix |
 | --- | --- | --- |
-| Unearned length | The piece is over budget, and a sentence past the budget names no reason to stay: an external constraint, a contract, or a fact that lives nowhere else. | Cut to budget, keeping only sentences with a named reason. |
+| Unearned length | The piece is over budget, and a sentence anywhere in it names no reason to stay: an external constraint, a contract, or a fact that lives nowhere else. | Cut every sentence without a reason. Bring the piece to budget, or name the reason for any overage that remains. |
 | Unneeded section | Remove the section or paragraph whole. The reader wouldn't miss it: it retells a linked ADR or issue, lists risks nobody acts on, reports verification the checks show, or recounts review. | Delete it whole. |
 | Buried point | Read only the first sentence or line. It doesn't say what this is, what changed, or what to do. | Put the point first; details follow. Restructure. |
 | Several jobs | The piece has more than one job, such as recording a decision and tracking open work, so each job's reader wades through the others. | Split it, or move each job to its home: the code, an ADR, an issue, a linked doc. Restructure. |
