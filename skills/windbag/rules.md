@@ -1,25 +1,26 @@
 # Windbag rules
 
 One question decides every finding: will a reader read this to the end? Long prose gets skipped,
-and skipped text informs no one. Windbag cuts unnecessary prose. Subagents use these rules to
-identify unnecessary prose and writing that needs restructuring. The main agent uses them to judge
-findings and write fixes.
+and skipped text informs no one. Windbag cuts unnecessary prose, and when in doubt, it cuts.
+Subagents use these rules to find what to cut and what to restructure. The main agent uses them to
+judge findings and apply fixes.
 
 ## The subagent
 
 Read like a copy editor with a red pen and a word budget. Every sentence is guilty until it earns
 its place. Hunt for cuts, and prefer deleting a piece whole to shortening it.
 
-Report what's wrong and why. The main agent decides how to fix it, so leave rewrites out of the
-report and edit nothing. Settle every check yourself instead of leaving it to the main agent, and
-leave out any finding that the grounds in Rejecting a finding would rule out.
+Make each finding a concrete cut: the exact words to delete, or the text that replaces them, so
+the main agent only decides yes or no. Edit nothing. Settle every check yourself instead of
+leaving it to the main agent, and leave out any finding another rule here rules out, such as one
+touching protected text.
 
 Work in this order, and finish each step before starting the next:
 
 1. Fetch the prose your brief points to and the diff it belongs to.
-2. Go through each piece with every pattern in the catalogue. Pieces over budget get the hardest
-   look.
-3. Read the code only where a cut depends on it, and only for lines the change adds, as described
+2. Cut pass: make every piece in your batch earn its place against the cut patterns in the
+   catalogue. Pieces over budget get the hardest look.
+3. Reference pass: check references and claims only in what survives the cut pass, as described
    in Reading the code.
 
 ## Scope
@@ -77,7 +78,7 @@ no text when it answers nothing.
 | --- | --- |
 | Commit subject | 72 characters |
 | Commit body | about 80 words |
-| Code comment | one or two lines; a public API doc comment, one short paragraph |
+| Code comment | one line; a public API doc comment, one short paragraph |
 | Doc or skill file section | about 150 words |
 | Pull request body | about 150 words visible, with the rest in collapsed sections |
 | Issue body | about 250 words |
@@ -99,16 +100,16 @@ Leave these alone, even when they are long:
 
 ## Code comments
 
-A comment exists only when the intent or mechanism can't be inferred from the code. Decide
-whether each comment should exist before asking whether it's too long. No comment beats a short
-one that tells the reader nothing, so a comment that fails this test goes whole, however short.
-
-These comments stay, shortened when wordy:
+A comment stays only when it names one of these reasons:
 
 - Non-obvious behavior forced by an external dependency, platform, vendor, protocol, or data
   source we can't change.
-- Doc comments that define a public API contract.
-- Issue or RFC links that explain a constraint the code can't express.
+- A public API contract, in a doc comment.
+- An issue or RFC link that explains a constraint the code can't express.
+- Open work: a surprise, rule, or shortcut whose code fix can't land in this change, as below.
+
+Plausibly useful isn't a reason. A comment without one goes whole, however short, since no
+comment beats one that tells the reader nothing. A comment with a reason comes down to its budget.
 
 For suppressions such as `eslint-disable`, `@ts-ignore`, `@ts-expect-error`, `//nolint`, `# noqa`,
 or `# type: ignore`, look up the rule. When it catches real bugs or protects correctness or
@@ -137,22 +138,20 @@ issue.
 
 ## Reading the code
 
-Read the code to settle a cut, not to verify the prose. Three questions need it: whether a comment
-says what the code already says, whether a fact the reader needs already lives in the code, and
-whether an example's references are stale or likely to go stale. Leave claims about a dependency
-unsure instead of reading its source.
+The cut pass reads the code for two questions only: whether a comment says what the code already
+says, and whether a fact the reader needs already lives in the code.
 
-For examples, check the file paths, symbols, flags, options, environment variables, line numbers,
-versions, counts, and descriptions of current behavior they name. Report each as stale, with what
-the code says instead, or as likely to go stale because it pins a detail that changes as the code
-evolves. Either kind is cut or generalized when the reader doesn't need it.
-
-A claim the code plainly contradicts, noticed while answering those questions, is worth a
-finding. Don't go looking for others.
+The reference pass checks only what survives the cut pass. Check the file paths, symbols, flags,
+options, environment variables, line numbers, versions, counts, and descriptions of current
+behavior it names. Report each as stale, with what the code says instead, or as aging because it
+pins a detail that changes as the code evolves. Either kind is cut or generalized when the reader
+doesn't need it. A claim the code plainly contradicts, noticed during these checks, is a finding
+too. Skip claims about a dependency instead of reading its source.
 
 ## Catalogue
 
-Each finding names one of these patterns. The fix column guides the main agent.
+Each finding names one of these patterns, and its cut follows the fix column. The cut pass uses
+the first table and the reference pass the second.
 
 | Pattern | Detection test | Fix |
 | --- | --- | --- |
@@ -160,7 +159,9 @@ Each finding names one of these patterns. The fix column guides the main agent.
 | Unneeded section | Remove the section or paragraph whole. The reader wouldn't miss it: it retells a linked ADR or issue, lists risks nobody acts on, reports verification the checks show, or recounts review. | Delete it whole. |
 | Buried point | Read only the first sentence or line. It doesn't say what this is, what changed, or what to do. | Put the point first; details follow. Restructure. |
 | Several jobs | The piece has more than one job, such as recording a decision and tracking open work, so each job's reader wades through the others. | Split it, or move each job to its home: the code, an ADR, an issue, a linked doc. Restructure. |
-| Repeated statement | The same fact appears twice in the piece, or restates a source the reader already has open. | Keep it once, where the reader looks first. |
+| Repeated statement | The same fact appears twice within one comment, section, message, or body, or restates a source the reader already has open, such as the issue a pull request links. | Keep it once, where the reader looks first. |
+| Boilerplate | The same comment or passage appears in more than one file in scope, such as a header or setup note pasted into each. Search the scope for a comment's wording before keeping it. A copy counts even when each file could be read on its own. | Keep one copy where readers look, such as the shared definition or a doc, and delete the rest. |
+| Mirrored comment | A comment is copied into code that mirrors or restates other code, such as a migration's down section or a `CREATE OR REPLACE` that redefines an earlier object. | Delete the copy; the original keeps it. |
 | Ceremony | Headings, bullets, tables, or template sections wrap a line or two of content, or say "N/A". | Write plain sentences. Drop empty sections no template requires. |
 | Sprawl | A sentence makes more than one point, splits subject from verb with a long clause, or opens with a long lead-in. | Split it and put the subject and verb first. |
 | Throat-clearing | A sentence announces what follows or that something is worth noting: "This PR...", "Note that", "It's worth mentioning". | Start with the claim. |
@@ -171,14 +172,11 @@ Each finding names one of these patterns. The fix column guides the main agent.
 | Enumeration over rule | Every instance is listed where one rule covers them, and readers read the list through rather than look things up in it. | State the rule. |
 | Example overload | Several examples make one point. Drop all but the best one and the point still lands. | Keep the most representative example. |
 | Situation-specific example | The example depends on one incident's details, so a reader can't map it to their own case. | Generalize it, or replace it with a representative one. |
-| Aging reference | An example names a file, symbol, flag, line number, version, count, or today's behavior that the reader doesn't need. | Describe the general case, or cut it. |
-| Stale reference | A reference no longer matches the code. | Fix it if the reader needs it. Otherwise cut it. |
 | Restating comment | The comment says what the code or the name it annotates already says. | Delete it. |
 | Surprise comment | The comment explains behavior of our own code that the code could make obvious. | Delete it and change the code, as in Code comments. |
 | Unguarded rule | A comment states a rule the code doesn't enforce: "always", "never", "must", "make sure". | Delete it and enforce the rule in the code or a test, as in Code comments. |
 | Excuse comment | A comment justifies a shortcut in our own code instead of fixing it: a workaround, a duplicate, a skipped check, "for now". | Delete it and make the right change, or open an issue, as in Code comments. |
 | Dead text | Commented-out code, banners, or a TODO without an issue. | Delete it, opening an issue for a TODO worth doing. |
-| False claim | A comment or doc says something the code plainly contradicts, noticed while settling a cut. | Correct the wrong part in no more words than it took, or report the code as open work. |
 | Process chatter | The author reports what they ran, checked, or tried. | Keep test evidence a reviewer acts on, in a line. Cut the rest. |
 | Restated subject | A body, section, or comment repeats its subject, heading, or the name it annotates. | Cut the repeat. |
 | Needless contrast | "X, not Y" or "X, never Y" where Y only repeats X. | Drop the contrast unless it tells the reader something X doesn't. |
@@ -188,6 +186,12 @@ Each finding names one of these patterns. The fix column guides the main agent.
 | Wordy phrase | in order to, due to the fact that, at this point in time, is able to. | Use the short form. |
 | Hidden verb | The action sits in a noun: perform validation of, make a decision about. | Use the verb. |
 | Missing actor | A passive hides who acts, and the reader needs to know. | Name the actor. |
+
+| Pattern | Detection test | Fix |
+| --- | --- | --- |
+| Stale reference | A reference no longer matches the code. | Fix it if the reader needs it. Otherwise cut it. |
+| Aging reference | An example names a file, symbol, flag, line number, version, count, or today's behavior that the reader doesn't need. | Describe the general case, or cut it. |
+| False claim | A comment or doc says something the code plainly contradicts. | Correct the wrong part in no more words than it took, or report the code as open work. |
 
 ## Kinds of prose
 
@@ -202,13 +206,14 @@ An issue body says what done means early. Its acceptance criteria don't restate 
 
 ## Findings
 
-Each finding gives:
+Report findings only, leaving out summaries of what you checked or verified. Each finding gives:
 
-- Location: file and line, commit, pull request body, or issue number.
+- Location: file and line range, commit, pull request body, or issue number.
 - Pattern, from the catalogue.
-- What's wrong, quoting the words at issue.
+- The cut: the exact words to delete, or the replacement text.
+- What's wrong, in one sentence.
 - Facts the reader needs in those words, and where each already lives, if anywhere.
-- Evidence from the code, for claims, references, and comment decisions.
+- Evidence from the code, for references, claims, and comment decisions.
 
 ## Fixes
 
@@ -217,8 +222,8 @@ what to do, and what the rule is. Every answer survives, in the text or where th
 lives. A piece's rule or main point never goes, even when its examples do. A fact stays only when
 you can name its reader and what they'd lose without it, and then in as few words as it takes.
 
-The main agent writes each fix in the author's voice and formatting, such as line width and
-heading style. A fix keeps whole sentences, since dropping articles, verbs, or connectives makes
-the reader decode instead of read. It doesn't make the text longer, unless it corrects something
-wrong. A fact the reader needs that lives nowhere else moves before it's cut. A code change keeps
-behavior, builds, and passes the tests that cover it.
+A replacement keeps the author's voice and formatting, such as line width and heading style. It
+keeps whole sentences, since dropping articles, verbs, or connectives makes the reader decode
+instead of read. It doesn't make the text longer, unless it corrects something wrong. A fact the
+reader needs that lives nowhere else moves before it's cut. A code change keeps behavior, builds,
+and passes the tests that cover it.

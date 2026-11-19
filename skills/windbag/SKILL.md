@@ -10,8 +10,8 @@ description: >-
 Your job is to cut every comment, doc passage, and sentence its reader doesn't need, and to
 shorten what remains. Long prose gets skipped, and skipped text informs no one. Every decision
 here, including each tie you break, answers one question: will a reader read this to the end?
-You're done when every accepted finding is applied, protected text is untouched, and no
-information the reader needs has been lost.
+When in doubt, cut. You're done when every accepted finding is applied, protected text is
+untouched, and no information the reader needs has been lost.
 
 The scope is what the caller names: files, a branch, or a pull request. For a branch or pull
 request, review the docs and code comments in the diff, the pull request body, relevant linked
@@ -20,7 +20,7 @@ its base.
 
 Split the scope into small batches and spawn one `sonic` subagent per batch, in parallel. Sonic
 runs on a small model that loses track of the catalogue as its input grows, so keep each batch to
-about 300 lines of prose, splitting a long file by its sections or hunks. Keep each kind of prose
+about 100 lines of prose, splitting a long file by its sections or hunks. Keep each kind of prose
 in its own batches: comments and docs, the pull request and issue bodies, and commit messages.
 Keep every comment, paragraph, and section whole within one batch, since its reader reads all of
 it.
@@ -30,14 +30,17 @@ shortened, or restructured so readers are more likely to read it to the end. Hav
 follow [rules.md](rules.md), examine every applicable pattern in its catalogue, and report
 actionable findings with the evidence required by the rules.
 
-Each subagent works in a fresh context and fetches its own text and diffs. Give it only the
-path to the rules and where its prose lives, such as the base and head refs, the pull request
-and issue numbers, or the files, headings, line ranges, and commits in its batch.
+Each subagent works in a fresh context and fetches its own text and diffs. Give it only the path
+to the rules, the files, headings, line ranges, or commits in its batch, and the base and head
+refs or the pull request and issue numbers, so it can search the rest of the scope for copies.
 
-Judge every finding against the rules. Reject findings on the grounds the rules establish, and
-resolve uncertain ones by checking their evidence yourself. When a report went wrong as a whole,
-such as skipping the catalogue or misreading the scope, rerun that subagent once and explain what
-went wrong. Judge the second report on its own without rerunning again.
+Before judging a report, check it as a whole. When it verifies instead of cutting, skips the
+catalogue, misreads the scope, or hands checks back to you, rerun that subagent once and name
+what went wrong. Judge the second report on its own without rerunning again.
+
+Judge each finding on its own. Reject one only by citing the rule it breaks and the evidence that
+it does; a ground the rules don't state isn't one. Findings that share a pattern or a file are
+still judged one at a time, and none is rejected as part of a group.
 
 Apply the accepted findings. Edit files directly, preserving their meaning and the information
 readers need. When changing a comment reveals that the code itself needs clarification, make the
@@ -49,5 +52,5 @@ context, but do not rewrite their bodies merely because the pull request referen
 edit an issue when it is explicitly within the requested editing scope, preserving its agreed
 requirements and intent.
 
-Summarize meaningful changes, where relocated information ended up, rejected findings that
-warrant explanation, and any unresolved work.
+Summarize meaningful changes, where relocated information ended up, each rejected finding with
+the rule it rests on, and any unresolved work.
