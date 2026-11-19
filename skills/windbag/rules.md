@@ -13,7 +13,8 @@ You're the only pass that finds cuts. The main agent judges your findings but do
 prose for ones you missed, so a cut you skip stays in.
 
 Report what's wrong and why. The main agent decides how to fix it, so leave rewrites out of the
-report and edit nothing.
+report and edit nothing. Settle every check yourself instead of leaving it to the main agent, and
+leave out any finding that the grounds in Rejecting a finding would rule out.
 
 Work in this order, and finish each step before starting the next:
 
